@@ -1,4 +1,2 @@
-import {getPhotoDescription} from './data.js';
-import {createPhotosElement} from './drawing-thumbnails.js';
-const photos = getPhotoDescription();
-createPhotosElement(photos);
+import './photo-upload-form.js';
+import './hashtags.js';
