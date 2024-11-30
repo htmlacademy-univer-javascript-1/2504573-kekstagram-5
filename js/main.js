@@ -1,5 +1,4 @@
-import { generatePhotos } from './data.js';
+import {getPhotoDescription} from './data.js';
 import {createPhotosElement} from './drawing-thumbnails.js';
-const photos = generatePhotos();
+const photos = getPhotoDescription();
 createPhotosElement(photos);
-
