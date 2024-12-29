@@ -82,7 +82,6 @@ const onBigPictureEscKeyDown = (evt) => {
 
 const onCloseBigPictureClick = () => {
   closeBigPicture();
-
   document.removeEventListener('keydown', onBigPictureEscKeyDown);
 };
 
@@ -98,11 +97,9 @@ const openBigPicture = (picture) => {
   pictureCaption.textContent = description;
 
   currentComments = comments.slice();
-
   renderComments();
 
   loadComments.addEventListener('click', onLoadCommentsButtonClick);
-
   document.addEventListener('keydown', onBigPictureEscKeyDown);
 };
 
