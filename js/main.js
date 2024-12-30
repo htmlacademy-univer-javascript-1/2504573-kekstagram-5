@@ -1,9 +1,9 @@
-import './pictures.js';
+import './photo-upload-form.js';
 import { loadData } from './fetch.js';
 import { renderPhotos } from './photo-upload-form.js';
 import './hashtags.js';
-import './slider-and-control.js';
-import './filters.js';
+import './slider.js';
+import './filter.js';
 
 let photos;
 
