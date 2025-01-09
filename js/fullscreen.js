@@ -1,4 +1,7 @@
-import {isEscapePressed} from './utils.js';
+import { isEscapePressed } from './utils.js';
+
+const COMMENTS_BATCH_SIZE = 5;
+let loaderHandler;
 
 const modalContainer = document.querySelector('.big-picture');
 const metadataContainer = modalContainer.querySelector('.big-picture__social');
@@ -6,9 +9,7 @@ const commentsContainer = metadataContainer.querySelector('.social__comments');
 const modalCloseButton = modalContainer.querySelector('.big-picture__cancel');
 const loadMoreButton = metadataContainer.querySelector('.social__comments-loader');
 const commentsCounter = metadataContainer.querySelector('.social__comment-shown-count');
-const COMMENTS_BATCH_SIZE = 5;
 const picturePreview = modalContainer.querySelector('.big-picture__img');
-let loaderHandler;
 
 const renderComment = (comment) => {
   commentsContainer.insertAdjacentHTML('beforeend', `<li class="social__comment"><img class="social__picture" src="${comment.avatar}" alt="${comment.name}" width="35" height="35"><p class="social__text">${comment.message}</p></li>`);

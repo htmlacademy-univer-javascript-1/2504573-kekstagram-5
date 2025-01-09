@@ -32,4 +32,4 @@ const clearPhotos = () => {
   photos.forEach((photo) => photo.remove());
 };
 
-export {renderPhotos, clearPhotos};
+export { renderPhotos, clearPhotos };
