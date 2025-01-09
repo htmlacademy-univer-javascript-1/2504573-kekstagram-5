@@ -77,14 +77,6 @@ const randomSequenceGenerator = (min, max) => {
 const pickRandomItems = (array, count, randomizer) =>
   Array.from({ length: count }, () => array[randomizer()]);
 
-const switchButtons = (buttons, activeId) => {
-  const activeButton = document.querySelector(`#${activeId}`);
-  buttons.forEach((button) => {
-    button.classList.toggle('img-filters__button--active', button === activeButton);
-    button.disabled = button === activeButton;
-  });
-};
-
 const isElementFocused = (className) => document.activeElement.classList.contains(className);
 
 export {
@@ -92,7 +84,6 @@ export {
   showErrorUploadMessage,
   alertDataLoadError,
   pickRandomItems,
-  switchButtons,
   debounceFunction,
   randomSequenceGenerator,
   isEscapePressed,

@@ -16,4 +16,4 @@ fetchPhotos(handleSuccessLoad, alertDataLoadError).then();
 initFilters();
 setFormSubmit();
 
-export {photos};
+export { photos };
