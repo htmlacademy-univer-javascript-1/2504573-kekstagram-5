@@ -1,8 +1,4 @@
 const DEFAULT_EFFECT_LEVEL = 100;
-const imageForm = document.querySelector('.img-upload__form');
-const slider = document.querySelector('.effect-level__slider');
-const imagePreview = imageForm.querySelector('#preview');
-const effectValueInput = imageForm.querySelector('.effect-level__value');
 
 class ImageEffect {
   constructor(type, minValue, maxValue, stepValue) {
@@ -20,6 +16,11 @@ const IMAGE_EFFECTS = {
   'effect-phobos': new ImageEffect('blur', 0, 3, 0.1),
   'effect-heat': new ImageEffect('brightness', 1, 3, 0.1),
 };
+
+const imageForm = document.querySelector('.img-upload__form');
+const slider = document.querySelector('.effect-level__slider');
+const imagePreview = imageForm.querySelector('#preview');
+const effectValueInput = imageForm.querySelector('.effect-level__value');
 
 noUiSlider.create(slider, {
   range: {

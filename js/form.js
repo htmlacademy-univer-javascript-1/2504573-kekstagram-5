@@ -1,8 +1,16 @@
-import {sendPhotos} from './server.js';
-import {updatePreview} from './image.js';
-import {showErrorUploadMessage, showSuccessUploadMessage} from './utils.js';
-import {isTagCountValid, areTagsUnique, handleKeyDown, validateCommentLength, validateTags} from './hashtags.js';
-import {handleEffectChange, resetToDefaultEffect} from './slider.js';
+import { sendPhotos } from './server.js';
+import { updatePreview } from './image.js';
+import { showErrorUploadMessage, showSuccessUploadMessage } from './utils.js';
+import { isTagsCountValid, areTagsUnique, handleKeyDown, validateCommentLength, validateTags } from './hashtags.js';
+import { handleEffectChange, resetToDefaultEffect } from './slider.js';
+
+const SCALE_DIFFERENCE = 25;
+const MIN_SCALE = 25;
+const MAX_SCALE = 100;
+const SubmitButtonText = {
+  IDLE: 'Опубликовать',
+  SENDING: 'Публикую...'
+};
 
 const imageForm = document.querySelector('.img-upload__form');
 const uploadModal = document.querySelector('.img-upload__overlay');
@@ -11,24 +19,18 @@ const exitButton = imageForm.querySelector('.img-upload__cancel');
 const descriptionField = imageForm.querySelector('.text__description');
 const hashTagsField = imageForm.querySelector('.text__hashtags');
 const scaleOutput = imageForm.querySelector('.scale__control--value');
+const imagePreview = imageForm.querySelector('#preview');
+const scaleAddButton = imageForm.querySelector('.scale__control--bigger');
+const scaleDecreaseButton = imageForm.querySelector('.scale__control--smaller');
+const filterButtonList = document.querySelector('.effects__list');
+const submitButton = document.querySelector('.img-upload__submit');
+
 const pristine = new Pristine(imageForm, {
   classTo: 'img-upload__field-wrapper',
   errorTextParent: 'img-upload__field-wrapper',
   errorTextTag: 'p',
   errorTextClass: 'form__error'
 }, true);
-const imagePreview = imageForm.querySelector('#preview');
-const scaleAddButton = imageForm.querySelector('.scale__control--bigger');
-const scaleDecreaseButton = imageForm.querySelector('.scale__control--smaller');
-const filterButtonList = document.querySelector('.effects__list');
-const SCALE_DIFFERENCE = 25;
-const MIN_SCALE = 25;
-const MAX_SCALE = 100;
-const submitButton = document.querySelector('.img-upload__submit');
-const SubmitButtonText = {
-  IDLE: 'Опубликовать',
-  SENDING: 'Публикую...'
-};
 
 const operateScale = (evt) => {
   let scale = parseInt(scaleOutput.value, 10);
@@ -44,10 +46,9 @@ const operateScale = (evt) => {
 
 const addFilters = () => filterButtonList.addEventListener('click', handleEffectChange);
 
-pristine.addValidator(hashTagsField, isTagCountValid, 'Слишком много хэш-тегов');
+pristine.addValidator(hashTagsField, isTagsCountValid, 'Слишком много хэш-тегов');
 pristine.addValidator(hashTagsField, areTagsUnique, 'Повтор хэш-тега');
 pristine.addValidator(hashTagsField, validateTags, 'Невалидный хэш-тег');
-
 pristine.addValidator(descriptionField, validateCommentLength, 'Комментарий длиннее 140 символов');
 
 const openModal = () => {

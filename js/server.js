@@ -14,4 +14,4 @@ const fetchPhotos = (onSuccess, onError) => request('/data', 'GET', null, onSucc
 
 const sendPhotos = (body, onSuccess, onError) => request('/', 'POST', body, onSuccess, onError);
 
-export {fetchPhotos, sendPhotos};
+export { fetchPhotos, sendPhotos };
